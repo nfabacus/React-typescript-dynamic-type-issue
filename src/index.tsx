@@ -16,22 +16,24 @@ const ConditionalPropsComponent: React.FC<FieldProps> = ({
   name,
   helpMessage = ""
 }) => {
-  const helpMessageIsString = typeof helpMessage === "string";
-  const helpText = helpMessageIsString ? helpMessage : helpMessage?.message;
+  const helpMessageIsString = typeof helpMessage === "string"; // remove this.
+  const helpText = helpMessageIsString ? helpMessage : helpMessage?.message; // remove this.
 
   return (
     <div>
       <h1>{name}</h1>
       {helpMessage ? (
         <div>
-          {!helpMessageIsString && (
+          {!helpMessageIsString && ( // replace helpMessageIsString with typeof helpMessage !== "string"
             <div>
               <p>{helpMessage?.headerText}</p>
               <p>{helpMessage?.message}</p>
               <p>{helpMessage?.footerText}</p>
             </div>
           )}
-          {helpMessageIsString && <p>{helpText}</p>}
+          {
+            helpMessageIsString && <p>{helpText}</p> // replace helpMessageIsString with typeof helpMessage === "string", replace helpText with helpMessage
+          }
         </div>
       ) : (
         <p>No help message</p>
